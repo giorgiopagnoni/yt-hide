@@ -24,11 +24,11 @@ const hideVideos = () => {
 
 const getViewCount = (text) => {
     let views, factor;
-    [, views, factor] = text.match(/(\d+)([K|M|B]?) views/) || [];
+    [, views, factor] = text.match(/(\d+(?:\.\d+)?)([K|M|B]?) views/) || [];
     if (views === undefined) {
         return;
     }
-    views = parseInt(views);
+    views = parseFloat(views);
     factor = {
         'K': 1000,
         'M': 1000000,
@@ -39,8 +39,8 @@ const getViewCount = (text) => {
 
 const main = () => {
     setInterval(() => {
-        const isYoutubePage = /youtube.com\/(watch)?/.test(window.location.href);
-        if (isYoutubePage) {
+        const shouldProcessPage = /youtube.com\/?(watch.+)?$/.test(window.location.href);
+        if (shouldProcessPage) {
             hideVideos();
         }
     }, 2000);
