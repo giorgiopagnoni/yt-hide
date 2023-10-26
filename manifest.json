@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "yt-hide",
+  "version": "1.0",
+
+  "description": "Adds opacity to low view count YouTube videos",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/", "https://www.youtube.com/watch?*"],
+      "js": ["yt-hide.js"]
+    }
+  ]
+}
