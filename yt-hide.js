@@ -25,8 +25,9 @@ const hideVideos = (viewsThreshold, languageConfig) => {
         ...document.body.getElementsByTagName('ytd-rich-item-renderer'),
         ...document.body.getElementsByTagName('ytd-compact-video-renderer'),
     ].forEach((videoElement) => {
-        const infoElements = videoElement.getElementsByClassName('ytd-video-meta-block');
-        const viewsCountElement = [...infoElements].find((element) => languageConfig.re.test(element.innerText));
+        const viewsCountElement = [...videoElement.getElementsByClassName('ytd-video-meta-block')].find((element) =>
+            languageConfig.re.test(element.innerText)
+        );
         if (viewsCountElement === undefined) {
             return;
         }
