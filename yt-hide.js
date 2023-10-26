@@ -24,16 +24,14 @@ const hideVideos = (viewsThreshold, languageConfig) => {
     [
         ...document.body.getElementsByTagName('ytd-rich-item-renderer'),
         ...document.body.getElementsByTagName('ytd-compact-video-renderer'),
-    ].forEach((videoContainer) => {
-        const infoContainers = videoContainer.getElementsByClassName('ytd-video-meta-block');
-        const viewsCountContainer = [...infoContainers].find((container) =>
-            languageConfig.re.test(container.innerText)
-        );
-        if (viewsCountContainer === undefined) {
+    ].forEach((videoElement) => {
+        const infoElements = videoElement.getElementsByClassName('ytd-video-meta-block');
+        const viewsCountElement = [...infoElements].find((element) => languageConfig.re.test(element.innerText));
+        if (viewsCountElement === undefined) {
             return;
         }
-        const viewsCount = getViewsCount(viewsCountContainer.innerText, languageConfig);
-        videoContainer.style.opacity = viewsCount < viewsThreshold ? '20%' : '100%';
+        const viewsCount = getViewsCount(viewsCountElement.innerText, languageConfig);
+        videoElement.style.opacity = viewsCount < viewsThreshold ? '20%' : '100%';
     });
 };
 
