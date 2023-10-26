@@ -6,7 +6,7 @@ const testGetViewsCount = () => {
         ['5.3K views', 5300],
         ['55K views', 55000],
         ['3.2M views', 3200000],
-        ['1.2B views', 1200000000],
+        ['1.23B views', 1230000000],
     ].forEach(([inputText, expectedViewsCount]) => {
         const actualViewsCount = getViewsCount(inputText, languageConfig.en);
         console.assert(
