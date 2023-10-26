@@ -21,10 +21,9 @@ const getViewsCount = (text, languageConfig) => {
 };
 
 const hideVideos = (viewsThreshold, languageConfig) => {
-    const body = document.body;
     const videoContainers = [
-        ...body.getElementsByTagName('ytd-rich-item-renderer'),
-        ...body.getElementsByTagName('ytd-compact-video-renderer'),
+        ...document.body.getElementsByTagName('ytd-rich-item-renderer'),
+        ...document.body.getElementsByTagName('ytd-compact-video-renderer'),
     ];
     videoContainers.forEach((videoContainer) => {
         const infoContainers = videoContainer.getElementsByClassName('ytd-video-meta-block');
