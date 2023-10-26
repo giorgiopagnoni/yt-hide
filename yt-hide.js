@@ -21,11 +21,10 @@ const getViewsCount = (text, languageConfig) => {
 };
 
 const hideVideos = (viewsThreshold, languageConfig) => {
-    const videoContainers = [
+    [
         ...document.body.getElementsByTagName('ytd-rich-item-renderer'),
         ...document.body.getElementsByTagName('ytd-compact-video-renderer'),
-    ];
-    videoContainers.forEach((videoContainer) => {
+    ].forEach((videoContainer) => {
         const infoContainers = videoContainer.getElementsByClassName('ytd-video-meta-block');
         const viewsCountContainer = [...infoContainers].find((container) =>
             languageConfig.re.test(container.innerText)
