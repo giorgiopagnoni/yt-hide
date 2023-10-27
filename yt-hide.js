@@ -1,6 +1,6 @@
 const languages = {
     en: {
-        re: /^(\d+(?:\.\d+)?)([K|M|B]?) views$/,
+        re: /^(\d+(?:\.\d+)?)([K|M|B]?) views?$/,
         factor: {
             K: 1000,
             M: 1000000,
@@ -37,7 +37,7 @@ const hideVideos = (viewsThreshold, languageConfig) => {
 };
 
 (() => {
-    const viewsThreshold = 500;
+    const viewsThreshold = 1000;
     setInterval(() => {
         hideVideos(viewsThreshold, languages.en);
     }, 1000);
