@@ -28,11 +28,14 @@ const hideVideos = (viewsThreshold, languageConfig) => {
         const viewsCountElement = [
             ...videoElement.getElementsByClassName('inline-metadata-item style-scope ytd-video-meta-block'),
         ].find((element) => languageConfig.re.test(element.innerText));
-        if (viewsCountElement === undefined) {
-            return;
+        let opacity = '100%'; // default to 100% as same element might be reused for another video or playlist
+        if (viewsCountElement !== undefined) {
+            const viewsCount = getViewsCount(viewsCountElement.innerText, languageConfig);
+            if (viewsCount < viewsThreshold) {
+                opacity = '20%';
+            }
         }
-        const viewsCount = getViewsCount(viewsCountElement.innerText, languageConfig);
-        videoElement.style.opacity = viewsCount < viewsThreshold ? '20%' : '100%';
+        videoElement.style.opacity = opacity;
     });
 };
 
